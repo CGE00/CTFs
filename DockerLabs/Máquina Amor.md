@@ -1,4 +1,4 @@
-# Maquina Amor (DockerLabs)
+# Máquina Amor (DockerLabs)
 <img width="502" height="334" alt="Banner" src="https://github.com/user-attachments/assets/45bc00cd-7fbf-4f94-8607-706aa2c2c447" />
 
 ## Fase de Reconociemiento

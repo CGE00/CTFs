@@ -1,8 +1,8 @@
-# Maquina InfluencerHate (DockerLabs)
+# Máquina InfluencerHate (DockerLabs)
 <img width="504" height="330" alt="Screenshot_6" src="https://github.com/user-attachments/assets/c6126784-18cc-4ef3-a8ae-cf05683624f2" />
 
-## Fase de Reconociemiento
-Con lo que empiezo siempre es con un escaneo de puertos rapidos con NMAP:
+## Fase de Reconocimiento
+Con lo que empiezo siempre es con un escaneo de puertos rápidos con NMAP:
 
 ```bash
 # nmap -p- -n -v -Pn 172.17.0.2 -oN scan-basic 
@@ -36,12 +36,12 @@ MAC Address: 02:42:AC:11:00:02 (Unknown)
 
 Con esta información me doy cuenta que las versiones de los servicios son relativamente recientes.  
   
-Me dispongo, entonces, a buscar información dentro de la **Pàgina WEB de Apache** que contiene el servidor. Lo primero que se observa al acceder a la pàgina es un login, y aquí decido hacer el primer ataque de fuerza bruta.
+Me dispongo, entonces, a buscar información dentro de la **Página WEB de Apache** que contiene el servidor. Lo primero que se observa al acceder a la página es un login, y aquí decido hacer el primer ataque de fuerza bruta.
 
 <img width="543" height="381" alt="Screenshot_3" src="https://github.com/user-attachments/assets/86f4f3d3-734b-4785-af3a-a745a0821004" />
 
 ## Fase de Explotación
-Lo mas conveniente que veo es hacer el ataque con `hydra`, directamente con una lista de credenciales por defecto:
+Lo más conveniente que veo es hacer el ataque con `hydra`, directamente con una lista de credenciales por defecto:
 ```bash
 # hydra -C /usr/share/seclists/Passwords/Default-Credentials/ftp-betterdefaultpasslist.txt http-get://172.17.0.2
 ---
@@ -50,7 +50,7 @@ Lo mas conveniente que veo es hacer el ataque con `hydra`, directamente con una 
 - El usuario es: **httpadmin**
 - La contraseña es: **fhttpadmin**
 
-Al acceder, lo unico que hay disponible es la pagina por defecto de Apache sin mucha información vulnerable, así que decido hacer una enumeración de directorios con `gobuster` indicando las credenciales antes obtenidas:
+Al acceder, lo unico que hay disponible es la página por defecto de Apache sin mucha información vulnerable, así que decido hacer una enumeración de directorios con `gobuster` indicando las credenciales antes obtenidas:
 ```bash
 # gobuster dir -u http://172.17.0.2 -w /usr/share/wordlists/seclists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt -x html,php,txt,log -U httpadmin -P fhttpadmin
 ---
@@ -66,7 +66,7 @@ Se logra encontrar `/login.php` y decido acceder y examinarla:
   
 <img width="596" height="856" alt="Screenshot_2" src="https://github.com/user-attachments/assets/f03c1dc6-9da3-43aa-8906-1a8aca2611c8" />
 
-Como me encuentro en otro login, decido hacer otro ataque de fuerza bruta con `hydra` otra vez. Pero primero interceptamos la petición de login con `burpsuit`, el objetivo es identificar la cabezera de autorización y ver como se envía las credenciales para poder realizar el ataque de fuerza bruta:
+Como me encuentro en otro login, decido hacer otro ataque de fuerza bruta con `hydra`. Pero primero interceptamos la petición de login con `burpsuit`, el objetivo es identificar la cabezera de autorización y ver como se envía las credenciales para poder realizar el ataque de fuerza bruta:
 
 <img width="489" height="347" alt="Screenshot_1" src="https://github.com/user-attachments/assets/51948847-9e5d-40c7-bad2-34eab62e4c7e" />
 
@@ -127,5 +127,5 @@ Procedo a acceder con el usuario `root`:
 root
 ```
 
-## Comantarios
-Esta es la tercera maquina realizo de **DockerLabs** y en esta he tardado mas en completarla que las anteriores ya que he tenido que investigar mucho sobre ataques de fuerza bruta, en este caso con `hydra`. Estoy empezando en el tema del pentesting y con esta maquina he aprendido mucho de fuerza bruta.
+## Comentarios
+Esta es la tercera máquina realizo de **DockerLabs** y en esta he tardado mas en completarla que las anteriores ya que he tenido que investigar mucho sobre ataques de fuerza bruta, en este caso con `hydra`. Estoy empezando en el tema del pentesting y con esta máquina he aprendido mucho de fuerza bruta.

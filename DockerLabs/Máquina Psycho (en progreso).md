@@ -79,5 +79,23 @@ luisillo
 Como **luisillo** compruebo también los permisos `sudo` tiene el usuario y con este usuario descubro que puede ejecutar un script llamado `paw.py`:  
 
 <img width="1019" height="117" alt="Screenshot_10" src="https://github.com/user-attachments/assets/7a4a78d9-de06-4869-8a03-fc932ff57519" />
-
+  
+Investigo que permisos tengo dentro de la carpeta `/opt/` y observo que tengo permisos de ecritura:  
+  
+<img width="418" height="103" alt="Screenshot_11" src="https://github.com/user-attachments/assets/62c0f20b-880d-4454-90e7-9e4f214f3158" />
+  
+Así que decido borrar ese archivo y crear otro llamado igual `/paw.py`, pero que al ejecutarse me convierta en `root`:  
+  
+<img width="1047" height="40" alt="Screenshot_12" src="https://github.com/user-attachments/assets/124718c8-1ab9-4316-a8f7-32ceadb70665" />
+  
+Procedo a ejecutar el nuevo archivo `/paw.py`:
+```bash
+> sudo python3 /opt/paw.py
+> whoami
+---
+root
+```
+  
+## Comentarios
+Esta máquina ha sido hasta la fecha la que mas tiempo le he tenido que dedicar, he investigado bastante por mi cuenta formas de vulnerar la máquina y eso me ha venido bien para ver formas de vulnerar sistemas. Pienso que la parte del `fuzzing` me vendrá bien lo que he aprendido para próximos **CTFs**. También he tenido la ayuda de mi profesor de **Seguridad** y **Servicios** en el Grado Superior de **ASIR** [ViejoFraile](https://www.youtube.com/@ViejoFraile), me ha explicado bien todas las vulnerabilidades que he realizado y eso me ha echo entederlo todo a mayor profundidad.
 

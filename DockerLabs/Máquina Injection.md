@@ -36,11 +36,11 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 - Puerto 22: OpenSSH 8.9p1 Ubuntu 3ubuntu0.6
 - Puerto 80: Apache httpd 2.4.52
 
-Con esta información me doy cuenta que las versiones de los servicios son relativamente recientes.Me dispongo, entonces, a buscar información dentro de la **Página WEB de Apache** que contiene el servidor.  
+Con esta información me doy cuenta que las versiones de los servicios son relativamente recientes. Me dispongo, entonces, a buscar información dentro de la **Página WEB de Apache** que contiene el servidor.  
 
 <img width="531" height="377" alt="Screenshot_1" src="https://github.com/user-attachments/assets/599fa844-eb75-4e4e-9db5-484ad4b369af" />
 
-Como la máquina se llama **Injection** y mi intención era realizar una máquina donde se explotara una **Injección SQL**, decido introducir código `sql` directamente en el login que nos dispone la máquina jugando con las comillas y nos devuelve el siguiente mensaje:
+Como la máquina se llama **Injection** y mi intención era realizar una máquina donde se explotara una **Injección SQL**, decido introducir código `sql` directamente en el login que nos dispone la máquina jugando con las comillas, y nos devuelve el siguiente mensaje:
 
 <img width="961" height="434" alt="Screenshot_2" src="https://github.com/user-attachments/assets/bb17538a-b049-4a20-8790-f6aab06aa1e7" />
 
@@ -56,11 +56,11 @@ Y al introducir ese código `sql`, no lleva a la siguiente página web con la si
 
 <img width="676" height="162" alt="Screenshot_3" src="https://github.com/user-attachments/assets/12828dd7-91df-4e9e-9290-28e0fd319814" />
 
-Como nos dá un posible usuario con su password, una de las pruebas que hago es usar esas credenciales en el servidor `SSH` que hemos descubierto antes y logro entrar:
+Como nos da un posible usuario con su password, una de las pruebas que hago es usar esas credenciales en el servidor `SSH` que hemos descubierto antes y logro entrar:
 
 <img width="653" height="424" alt="Screenshot_4" src="https://github.com/user-attachments/assets/daca6c35-5a98-4b57-aea8-d47aea661c0f" />
 
-Una vez dentro del servidor, primero intento ver los permisos sudo que tiene el usuario, `sudo -l`, pero no me sirvió. Así que decido biscar los binarios que disponibles con el usuario **dylan**, todo esto con la intención de escala de privilegios:
+Una vez dentro del servidor, primero intento ver los permisos sudo que tiene el usuario, `sudo -l`, pero no me sirvió. Así que decido buscar los binarios que disponibles con el usuario **dylan**, todo esto con la intención de escalar privilegios:
 
 ```bash
 > find / -perm /4000 2>/dev/null

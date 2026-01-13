@@ -78,7 +78,7 @@ Una vez dentro del servidor, primero intento ver los permisos sudo que tiene el 
 /usr/bin/chfn
 ```
 
-Observo que está ek binario `env`, con el binerio `env` nos permite mostrar el entorno actual o ejecutar un comando específico en un entorno modificado, y entonces decido ejecutar una `sh` como propietario para convertirme en `root`:  
+Observo que está el binario `env`, con el binerio `env` nos permite mostrar el entorno actual o ejecutar un comando específico en un entorno modificado, y entonces decido ejecutar una `sh` como propietario para convertirme en `root`:  
 
 ```bash
 > env /bin/sh -p
@@ -87,3 +87,5 @@ Observo que está ek binario `env`, con el binerio `env` nos permite mostrar el 
 root
 ```
 
+## Comentarios
+Como he comentado antes un poco, con esta máquina tenía la intención de realizar una **Injección SQL**, me interesa mucho coger experiencia con esta vulnerabilidad y pienso que es una muy buena máquina para iniciarse. También agradecer a mi profesor de **Seguridad** y **Servicios** en el Grado Superior de **ASIR** [ViejoFraile](https://www.youtube.com/@ViejoFraile), que me ha explicado en mas profundidad esta vulnerabilidad con ejemplos en otros laboratorios.

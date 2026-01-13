@@ -56,3 +56,7 @@ Y al introducir ese código `sql`, no lleva a la siguiente página web con la si
 
 <img width="676" height="162" alt="Screenshot_3" src="https://github.com/user-attachments/assets/12828dd7-91df-4e9e-9290-28e0fd319814" />
 
+Como nos dá un posible usuario con su password, una de las pruebas que hago es usar esas credenciales en el servidor `SSH` que hemos descubierto antes y logro entrar:
+
+<img width="653" height="424" alt="Screenshot_4" src="https://github.com/user-attachments/assets/daca6c35-5a98-4b57-aea8-d47aea661c0f" />
+

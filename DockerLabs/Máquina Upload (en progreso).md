@@ -20,7 +20,6 @@ PORT   STATE SERVICE VERSION
 |_http-title: Upload here your file
 |_http-server-header: Apache/2.4.52 (Ubuntu)
 MAC Address: 02:42:AC:11:00:02 (Unknown)
-
 ```
 
 - Puerto 80: Apache httpd 2.4.52
@@ -28,3 +27,11 @@ MAC Address: 02:42:AC:11:00:02 (Unknown)
 Con esta información me doy cuenta que lla versión del **Página WEB de Apache** es reciente. Así que procedo a inspeccionar un poco la página:
 
 <img width="538" height="284" alt="Screenshot_1" src="https://github.com/user-attachments/assets/132d2d7e-5527-4fb3-bdfa-2f90c05c702f" />
+
+Lo que se ve nada mas acceder a la página es un boton para subir archivos, con esto ya podemos pensar por donde va la cosa. Antes de intentar subir alguna cosa al servidor, decidor hacer un poco de `fuzzing` con `gobuster` con la intención de encontrar un **Directory Listing** donde se puedan ver los archivos subidos o algo por el estilo:
+
+```bash
+gobuster dir -u http://172.17.0.2 -w /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt -x html,php,txt,log > directory.txt
+```
+
+<img width="663" height="425" alt="Screenshot_3" src="https://github.com/user-attachments/assets/c61e2f50-3de2-4455-8278-210482a8ab59" />

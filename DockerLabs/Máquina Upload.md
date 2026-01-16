@@ -36,12 +36,12 @@ gobuster dir -u http://172.17.0.2 -w /usr/share/wordlists/seclists/Discovery/Web
 
 <img width="663" height="425" alt="Screenshot_3" src="https://github.com/user-attachments/assets/c61e2f50-3de2-4455-8278-210482a8ab59" />
 
-Encontramos el payload llamado `/uploads` donde tiene toda la pinta que es lo que buscaba, un logar donde se puede ver los archivos subidos al servidor. Lo comprobamos y confirmamos que es así:
+Encontramos el payload llamado `/uploads` donde tiene toda la pinta que es lo que buscaba, un lugar donde se puede ver los archivos subidos al servidor. Lo comprobamos y confirmamos que es así:
 
 <img width="896" height="277" alt="Screenshot_4" src="https://github.com/user-attachments/assets/4b47ab19-1670-42df-b32e-735505e9bbd2" />
 
 ## Fase de Explotación
-Una vez recopilado toda la anterior información de la página, decido porceder a intentar distintos archivos para comprobar si hay alguna restricción con algún tipo de archivo en concreto. Después de varias pruebas, intento subir un archivo `.php` para ver que sucede:  
+Una vez recopilado toda la anterior información sobre la màquina, decido porceder a intentar distintos archivos para comprobar si hay alguna restricción con algún tipo de archivo en concreto. Después de varias pruebas, intento subir un archivo `.php` para ver que sucede:  
 *(El archivo)*
 
 <img width="385" height="81" alt="Screenshot_2" src="https://github.com/user-attachments/assets/d09efca2-2ead-4925-80c2-83250355b541" />
@@ -77,7 +77,7 @@ User www-data may run the following commands on 64df3ed5eb32:
     (root) NOPASSWD: /usr/bin/env
 ```
 
-Como veo que el usuario `www-data` puede ejecutar el comando `env`, así que decido buscar en **GTFOBins** una fomra para convertirme en `root`:
+Como veo que el usuario `www-data` puede ejecutar el comando `env`, procedo a buscar en **GTFOBins** una fomra para convertirme en `root`:
 
 ```bash
 > sudo env /bin/bash      

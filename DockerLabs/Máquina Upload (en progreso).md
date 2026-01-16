@@ -2,7 +2,7 @@
 
 <img width="498" height="325" alt="Screenshot" src="https://github.com/user-attachments/assets/a4bc2f40-30a3-4602-9a37-0bc5a41b3972" />
 
-Fase de Reconocimiento
+## Fase de Reconocimiento
 Con lo que empiezo siempre es con un escaneo de puertos rápido con NMAP:
 
 ```bash
@@ -35,3 +35,7 @@ gobuster dir -u http://172.17.0.2 -w /usr/share/wordlists/seclists/Discovery/Web
 ```
 
 <img width="663" height="425" alt="Screenshot_3" src="https://github.com/user-attachments/assets/c61e2f50-3de2-4455-8278-210482a8ab59" />
+
+Encontramos el payload llamado `/uploads` donde tiene toda la pinta que es lo que buscaba, un logar donde se puede ver los archivos subidos al servidor. Lo comprobamos y confirmamos que es así:
+
+<img width="896" height="277" alt="Screenshot_4" src="https://github.com/user-attachments/assets/4b47ab19-1670-42df-b32e-735505e9bbd2" />

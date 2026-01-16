@@ -67,3 +67,24 @@ Subo la **Reverseshell** al servidor y la ejecuto desde el **Directory Listing**
 <img width="938" height="322" alt="Screenshot_7" src="https://github.com/user-attachments/assets/43f0c893-84e9-47e6-9e65-fba24c426174" />
 
 <img width="1031" height="212" alt="Screenshot_8" src="https://github.com/user-attachments/assets/a90e4a0c-70ae-4665-94a0-694dce8be43c" />
+
+Hemos conseguido acceder al sistema, ahora el objetivo es la **Escala de Privilegios**. Así que lo primero que compruebo es si el sistema tiene un mala confiración de privilegios `sudo` y descubro lo siguiente:
+
+```bash
+> sudo -l
+---
+User www-data may run the following commands on 64df3ed5eb32:
+    (root) NOPASSWD: /usr/bin/env
+```
+
+Como veo que el usuario `www-data` puede ejecutar el comando `env`, así que decido buscar en **GTFOBins** una fomra para convertirme en `root`:
+
+```bash
+> sudo env /bin/bash      
+> whoami
+---
+root
+```
+
+## Comentarios
+Con esta máquina quería aprender con la vulnerabilidad **File Upload** y me ha servido para como se puede explotar en un nivel bajo y como funciona. También, agradecer a mi profesor de **Seguridad** y **Servicios** en el grado superior de **ASIR** [ViejoFraile](https://www.youtube.com/@ViejoFraile) que, aparte de explicarme bien de que trata esta vulnerabilidad, me ha enseñado mas ejemplos de **Files Uploads** que me servirá mucho en futuros CTFs.

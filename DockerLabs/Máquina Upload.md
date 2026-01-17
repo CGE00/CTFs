@@ -24,7 +24,7 @@ MAC Address: 02:42:AC:11:00:02 (Unknown)
 
 - Puerto 80: Apache httpd 2.4.52
 
-Con esta información me doy cuenta que lla versión del **Página WEB de Apache** es reciente. Así que procedo a inspeccionar un poco la página:
+Con esta información me doy cuenta que la versión del **Página WEB de Apache** es reciente. Así que procedo a inspeccionar un poco la página:
 
 <img width="538" height="284" alt="Screenshot_1" src="https://github.com/user-attachments/assets/132d2d7e-5527-4fb3-bdfa-2f90c05c702f" />
 

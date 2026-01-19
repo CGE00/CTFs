@@ -87,4 +87,4 @@ root
 ```
 
 ## Comentarios
-Con esta máquina quería aprender con la vulnerabilidad **File Upload** y me ha servido para como se puede explotar en un nivel bajo y como funciona. También, agradecer a mi profesor de **Seguridad** y **Servicios** en el grado superior de **ASIR** [ViejoFraile](https://www.youtube.com/@ViejoFraile) que, aparte de explicarme bien de que trata esta vulnerabilidad, me ha enseñado mas ejemplos de **Files Uploads** que me servirá mucho en futuros CTFs.
+Con esta máquina quería aprender con la vulnerabilidad **File Upload** y me ha servido para comprobar como se puede explotar en un nivel bajo y como funciona. También, agradecer a mi profesor de **Seguridad** y **Servicios** en el grado superior de **ASIR** [ViejoFraile](https://www.youtube.com/@ViejoFraile) que, aparte de explicarme bien de que trata esta vulnerabilidad, me ha enseñado mas ejemplos de **Files Uploads** que me servirá mucho en futuros CTFs.

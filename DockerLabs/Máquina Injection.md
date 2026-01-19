@@ -46,7 +46,7 @@ Como la máquina se llama **Injection** y mi intención era realizar una máquin
 
 ## Fase de Explotación
 
-Con el mensaje que nos muestra podemos confirmar que el login lee `sql` y nos podemos aprovechar. Decido introducir una de las comandas mas populares y sencillas en **Injecciones SQL**:
+Con el mensaje que nos muestra podemos confirmar que el login responde a comandas `sql` y nos podemos aprovechar. Decido introducir una de las comandas mas populares y sencillas en **Injecciones SQL**:
 
 ```bash
 'or true -- -
